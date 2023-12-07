@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+	"net"
+    "strconv"
+	"time"
+)
+
+func scanPort(protocol, hostname string, port int) bool {
+	address := hostname + ":" + strconv.Itoa(port)
+	conn, err := net.DialTimeout(protocol, address, 60*time.Second)
+
+	fmt.Println(address)
+
+	if err != nil {
+		return false
+	}
+
+	defer conn.Close()
+	return true
+}
+
+func main() {
+	fmt.Println("Port Scanning")
+	open := scanPort("tcp", "192.168.1.250", 9000)
+	fmt.Printf("Port Open: %t\n", open)
+}
