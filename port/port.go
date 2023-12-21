@@ -2,21 +2,21 @@ package port
 
 import (
 	"net"
-    "strconv"
+	"strconv"
 	"time"
 )
 
 type ScanResult struct {
-	Port int
+	Port  int
 	State string
 }
 
 func ScanPort(protocol, hostname string, port int) ScanResult {
-	result := Scanresult{Port: port}
+	result := ScanResult{Port: port}
 	address := hostname + ":" + strconv.Itoa(port)
 	conn, err := net.DialTimeout(protocol, address, 60*time.Second)
 
-	if err !+ nil {
+	if err != nil {
 		result.State = "Closed"
 		return result
 	}
@@ -25,7 +25,7 @@ func ScanPort(protocol, hostname string, port int) ScanResult {
 	return result
 }
 
-func InitialScan(hostname string) {}ScanResult {
+func InitialScan(hostname string) []ScanResult {
 	var results []ScanResult
 	for i := 0; i <= 1024; i++ {
 		results = append(results, ScanPort("tcp", hostname, i))

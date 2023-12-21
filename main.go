@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/boltx3/cybersecuritysuite/port/port.go"
+	"github.com/Boltx3/cybersecuritysuite/port"
 )
 
 func main() {
