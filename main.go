@@ -3,11 +3,16 @@ package main
 import (
 	"fmt"
 
-	"github.com/Boltx3/cybersecuritysuite/port"
+	"github.com/boltx3/cybersecuritysuite/port"
 )
 
 func main() {
+	var hostname string
 	fmt.Println("Port Scanning")
-	results := port.InitialScan("localhost")
-	fmt.Printf(results)
+	fmt.Println("Enter the hostname you want to scan")
+	fmt.Scanln(&hostname)
+	results := port.InitialScan(hostname)
+	results2 := port.ScanPort("TCP", hostname, 80)
+	fmt.Println(results)
+	fmt.Println(results2)
 }
